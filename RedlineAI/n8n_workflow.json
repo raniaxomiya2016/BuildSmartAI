@@ -1,0 +1,401 @@
+{
+  "name": "RedlineAI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "451a1b78-e710-406a-9b87-815e7ef44773",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3397a02e-1302-4d8b-b471-4c8d344aac82",
+      "name": "Webhook",
+      "webhookId": "451a1b78-e710-406a-9b87-815e7ef44773"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "app4TXB3TW8JHOWub",
+          "mode": "list",
+          "cachedResultName": "RedlineAI",
+          "cachedResultUrl": "https://airtable.com/app4TXB3TW8JHOWub"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0ifuiPR39vb1za",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/app4TXB3TW8JHOWub/tbl0ifuiPR39vb1za"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Contract Name": "={{ $('Webhook').item.json.body.submission.questions[0].value }}",
+            "Date Uploaded": "={{ $now }}",
+            "Risk Level.": "={{ $('Risk Analyzer').item.json.output[0].content[0].text.match(/RISK LEVEL:\\s*(Low|Medium|High)/i)[1] }}",
+            "Full Report.": "={{ $('Risk Analyzer').item.json.output[0].content[0].text }}",
+            "Status.": "Complete"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Contract Name",
+              "displayName": "Contract Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Date Uploaded",
+              "displayName": "Date Uploaded",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Risk Level.",
+              "displayName": "Risk Level.",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Low",
+                  "value": "Low"
+                },
+                {
+                  "name": "Medium",
+                  "value": "Medium"
+                },
+                {
+                  "name": "High",
+                  "value": "High"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Full Report.",
+              "displayName": "Full Report.",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status.",
+              "displayName": "Status.",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Pending",
+                  "value": "Pending"
+                },
+                {
+                  "name": "Complete",
+                  "value": "Complete"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        1008,
+        0
+      ],
+      "id": "f335a0ca-b56c-4ac9-941a-fd4aff065ef5",
+      "name": "Save to Airtable.",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "M0iTfFxxsq9BgndK",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.submission.questions[1].value }}",
+        "subject": "={{ $('Webhook').item.json.body.submission.questions[0].value }} — Your RedlineAI Risk Report",
+        "message": "=Hi there,\n\nYour contract has been analyzed by RedlineAI.\n\nCONTRACT DETAILS:\nContract Name: {{ $('Webhook').item.json.body.submission.questions[0].value }}\nDate Analyzed: {{ $now.toFormat('dd MMM yyyy') }}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n{{ $('Risk Analyzer').item.json.output[0].content[0].text }}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nThis report was generated automatically by RedlineAI.\nPlease consult a qualified lawyer before making any legal decisions.\n\nRedlineAI — Know what you're signing before you sign it.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1232,
+        0
+      ],
+      "id": "ecef6bb4-7bf3-451d-a394-8e77f058cf27",
+      "name": "Send a message",
+      "webhookId": "066299a3-946c-4a26-9efa-54c7465a0511",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qThXXGkgk2T5A86J",
+          "name": "Gmail account 6"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a contract risk analyst. A contract has been provided to you below.\n\nYour job is to:\n1. Read the entire contract carefully\n2. Identify every clause that could be a risk to the person signing it\n3. For each risky clause, explain what it means in plain English and why it is risky\n4. At the end, give an overall Risk Level - either Low, Medium, or High\n\nFormat your response like this:\n\nRISK LEVEL: [Low / Medium / High]\n\nRISKY CLAUSES:\n- Clause: [name of clause]\n  Risk: [explain the risk in plain English]\n\nSUMMARY:\n[Write a short paragraph summarizing the overall risk of this contract]\n\nHere is the contract:\n{{ $('PDF Text Extractor').item.json.text }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        656,
+        0
+      ],
+      "id": "fb854f7c-493e-47ef-b8d3-c240d8fab518",
+      "name": "Risk Analyzer",
+      "credentials": {
+        "openAiApi": {
+          "id": "3e5EtE1QV50tmJdK",
+          "name": "OpenAI account 8"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Webhook').item.json.body.submission.questions[2].value[0].url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1606c982-1e2c-4e43-86db-d1b95b1173ba",
+      "name": "Download Contract"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "80e334da-f312-4dcd-8c72-f41e70c98d5d",
+      "name": "PDF Text Extractor"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "rani-admin.app.n8n.cloud",
+            "user-agent": "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)",
+            "content-length": "858",
+            "accept": "application/json",
+            "accept-encoding": "gzip, br",
+            "baggage": "sentry-environment=production,sentry-public_key=fb9e5b294f68425eb7eb6b168b67dc8d,sentry-trace_id=0548bd55448f415faaeee34106be9830",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "74.220.48.249",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "US",
+            "cf-ray": "a08482e33a772095-PDX",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "sentry-trace": "0548bd55448f415faaeee34106be9830-a28f39f8933ee9a3",
+            "traceparent": "00-6a262ac2000000003deb677afd147676-2f921fe1f3dcffc5-00",
+            "tracestate": "dd=t.tid:6a262ac200000000;t.dm:-3;s:-1;p:2f921fe1f3dcffc5",
+            "x-datadog-parent-id": "3427837321701818309",
+            "x-datadog-sampling-priority": "-1",
+            "x-datadog-tags": "_dd.p.tid=6a262ac200000000",
+            "x-datadog-trace-id": "4461773633770255990",
+            "x-forwarded-for": "74.220.48.249, 104.23.160.218",
+            "x-forwarded-host": "rani-admin.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-91-6c5f66d98-548kw",
+            "x-is-trusted": "yes",
+            "x-real-ip": "74.220.48.249"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "formId": "fdZ8yKAp7gus",
+            "formName": "RedlineAI",
+            "submission": {
+              "submissionId": "20c1d158-39ec-499f-9dee-88c42e62e4f9",
+              "submissionTime": "2026-06-08T02:36:50.980Z",
+              "lastUpdatedAt": "2026-06-08T02:36:50.980Z",
+              "questions": [
+                {
+                  "id": "13E1",
+                  "name": "Contract Name",
+                  "type": "ShortAnswer",
+                  "value": "NDA Text"
+                },
+                {
+                  "id": "4rXy",
+                  "name": "Email Address",
+                  "type": "EmailInput",
+                  "value": null
+                },
+                {
+                  "id": "pf9S",
+                  "name": "Upload Your Contract",
+                  "type": "FileUpload",
+                  "value": [
+                    {
+                      "url": "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-720335/flowpublicid-fdZ8yKAp7gus/81c24adc-f6cd-4997-ae6f-e221855656e4-dwYWNdMRk9i04JeAa4mPbfJLUQ8iAVtJhh2khzwr2JZHTCNyk92eCOa5K3UI2OASHnjoukxdK1Lib4815cC2Eu2xoEpGKnsL7C6/Basic-Non-Disclosure-Agreement.pdf",
+                      "filename": "Basic-Non-Disclosure-Agreement.pdf"
+                    }
+                  ]
+                }
+              ],
+              "calculations": [],
+              "urlParameters": [],
+              "quiz": {},
+              "documents": [],
+              "scheduling": [],
+              "payments": []
+            }
+          },
+          "webhookUrl": "https://rani-admin.app.n8n.cloud/webhook/451a1b78-e710-406a-9b87-815e7ef44773",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Download Contract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Airtable.": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Risk Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Save to Airtable.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    },
+    "Download Contract": {
+      "main": [
+        [
+          {
+            "node": "PDF Text Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF Text Extractor": {
+      "main": [
+        [
+          {
+            "node": "Risk Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "59e5df61-914a-4491-a4ce-2a79287f1067",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a43ad6414d59ead781990561aee56148ff5142576f13b2344cc7547548d0de7d"
+  },
+  "nodeGroups": [],
+  "id": "7YJSVuZx6xq0XkQp",
+  "tags": []
+}

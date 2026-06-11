@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedlineAI — Know what you're signing before you sign it</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="RedlineAI parses legal contracts instantly to flag unfavorable terms, clarify legal jargon, and show you exactly what you're signing. Simple, fast, and AI-powered.">
+    <meta name="keywords" content="legal AI, contract analysis, contract redline, AI lawyer, contract review, lease analyzer">
+    <meta name="author" content="RedlineAI">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://redlineai.com/">
+    <meta property="og:title" content="RedlineAI — Know what you're signing before you sign it">
+    <meta property="og:description" content="RedlineAI parses legal contracts instantly to flag unfavorable terms, clarify legal jargon, and show you exactly what you're signing.">
+    <meta property="og:image" content="https://redlineai.com/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://redlineai.com/">
+    <meta property="twitter:title" content="RedlineAI — Know what you're signing before you sign it">
+    <meta property="twitter:description" content="RedlineAI parses legal contracts instantly to flag unfavorable terms, clarify legal jargon, and show you exactly what you're signing.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Glow Effects -->
+    <div class="glow-container">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-red">Redline</span><span class="logo-white">AI</span>
+            </a>
+            <div class="status-pill">
+                <span class="status-dot pulsing"></span>
+                <span class="status-text">v1.0 Live</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="badge-wrapper animate-up" style="animation-delay: 0.1s;">
+                <span class="hero-badge">
+                    <span class="badge-accent">New</span> AI-Powered Contract Review
+                </span>
+            </div>
+            
+            <h1 class="headline animate-up" style="animation-delay: 0.2s;">
+                Read between the <span class="highlight-red">red lines.</span>
+            </h1>
+            
+            <h2 class="subheadline animate-up" style="animation-delay: 0.3s;">
+                Know what you're signing before you sign it.
+            </h2>
+            
+            <p class="description animate-up" style="animation-delay: 0.4s;">
+                RedlineAI uses advanced machine learning to dissect complex agreements, flag hidden risks, and explain dense legal jargon in plain English. Get an instant, actionable breakdown of your contracts in seconds.
+            </p>
+        </section>
+
+        <!-- Form Embed Section -->
+        <section class="form-section animate-up" style="animation-delay: 0.5s;" id="analyze-section">
+            <div class="form-container-card">
+                <div class="card-header">
+                    <div class="window-controls">
+                        <span class="dot dot-close"></span>
+                        <span class="dot dot-minimize"></span>
+                        <span class="dot dot-maximize"></span>
+                    </div>
+                    <div class="card-title">RedlineAI Analysis Terminal</div>
+                </div>
+                <div class="form-wrapper">
+                    <!-- Loading skeleton/spinner inside the card while iframe loads -->
+                    <div class="form-loader" id="form-loader">
+                        <div class="spinner"></div>
+                        <p class="loader-text">Initializing Secure Analysis Tunnel...</p>
+                    </div>
+                    <!-- Fillout Form Embed -->
+                    <iframe 
+                        id="fillout-iframe"
+                        src="https://redlineai.fillout.com/analyze" 
+                        width="100%" 
+                        height="650px" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        title="RedlineAI Contract Uploader"
+                        allow="camera; microphone; geolocation"
+                        style="border: none; opacity: 0; transition: opacity 0.5s ease-in-out;"
+                    ></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-divider"></div>
+        <div class="footer-content">
+            <p class="disclaimer">
+                <span class="logo-red">Redline</span><span class="logo-white">AI</span> — This report is AI-generated and not legal advice.
+            </p>
+            <p class="copyright">
+                RedlineAI — Built by Rani Neog Adhikary under the brand 'BuildSmart AI'.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script src="main.js"></script>
+</body>
+</html>
