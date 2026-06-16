@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VisionCheck AI — Workplace Safety Inspector</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .brand {
+      font-size: 13px;
+      color: #64748b;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #f8fafc;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 15px;
+    }
+    .card {
+      background: #1e2330;
+      border: 1px solid #2d3748;
+      border-radius: 16px;
+      padding: 36px;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 24px;
+    }
+    .upload-area {
+      border: 2px dashed #3d4f6e;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      margin-bottom: 24px;
+    }
+    .upload-area:hover { border-color: #4f8ef7; }
+    .upload-area input { display: none; }
+    .upload-icon { font-size: 40px; margin-bottom: 12px; }
+    .upload-text { color: #94a3b8; font-size: 14px; margin-bottom: 8px; }
+    .upload-hint { color: #475569; font-size: 12px; }
+    .preview-img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #2563eb; }
+    .btn:disabled { background: #1e3a5f; color: #475569; cursor: not-allowed; }
+    .result-card {
+      background: #1e2330;
+      border: 1px solid #2d3748;
+      border-radius: 16px;
+      padding: 36px;
+      width: 100%;
+      max-width: 600px;
+      display: none;
+    }
+    .result-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #f8fafc;
+    }
+    .result-body {
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .result-body h1 { font-size: 18px; color: #f8fafc; margin: 16px 0 8px; }
+    .result-body h2 { font-size: 16px; color: #e2e8f0; margin: 14px 0 6px; }
+    .result-body h3 { font-size: 14px; color: #cbd5e1; margin: 10px 0 4px; }
+    .result-body strong { color: #f8fafc; }
+    .status {
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+      margin-top: 12px;
+      min-height: 20px;
+    }
+    .error { color: #f87171; }
+    .success { color: #34d399; }
+    .footer {
+      margin-top: 40px;
+      color: #334155;
+      font-size: 12px;
+      text-align: center;
+    }
+    .footer a { color: #475569; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <p class="brand">BuildSmart AI</p>
+  <h1>VisionCheck AI</h1>
+  <p class="subtitle">AI-Powered Workplace Safety Inspector</p>
+
+  <div class="card">
+    <div class="upload-area" id="uploadArea">
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" />
+      <div class="upload-icon">🏗️</div>
+      <p class="upload-text">Click to upload a workplace image</p>
+      <p class="upload-hint">JPEG, PNG or WebP · Max 5MB</p>
+    </div>
+
+    <img id="preview" class="preview-img" src="" alt="Preview" />
+
+    <button class="btn" id="analyzeBtn" disabled onclick="analyzeImage()">
+      Analyze Safety
+    </button>
+
+    <p class="status" id="status"></p>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <p class="result-title">🔍 Safety Analysis Report</p>
+    <div class="result-body" id="resultBody"></div>
+  </div>
+
+  <div class="footer">
+    Powered by Amazon Bedrock · Built by
+    <a href="https://buildsmartai.app" target="_blank">BuildSmart AI</a>
+  </div>
+
+  <script>
+    const API_URL = 'https://kx1kb1kxxc.execute-api.us-east-1.amazonaws.com/prod/analyze';
+
+    let base64Image = '';
+    let imageType = '';
+
+    document.getElementById('uploadArea').addEventListener('click', function() {
+      document.getElementById('fileInput').click();
+    });
+
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      imageType = file.type;
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const result = event.target.result;
+        base64Image = result.split(',')[1];
+
+        document.getElementById('preview').src = result;
+        document.getElementById('preview').style.display = 'block';
+        document.getElementById('analyzeBtn').disabled = false;
+        setStatus('Image ready. Click Analyze Safety.', '');
+      };
+      reader.readAsDataURL(file);
+    });
+
+    async function analyzeImage() {
+      if (!base64Image) return;
+
+      const btn = document.getElementById('analyzeBtn');
+      const resultCard = document.getElementById('resultCard');
+      const resultBody = document.getElementById('resultBody');
+
+      btn.disabled = true;
+      btn.textContent = 'Analyzing...';
+      setStatus('Sending to AI safety inspector...', '');
+      resultCard.style.display = 'none';
+
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            image: base64Image,
+            content_type: imageType
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          resultBody.innerHTML = data.analysis
+            .replace(/### (.*?)(\n|$)/g, '<h3>$1</h3>')
+            .replace(/## (.*?)(\n|$)/g, '<h2>$1</h2>')
+            .replace(/# (.*?)(\n|$)/g, '<h1>$1</h1>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+          resultCard.style.display = 'block';
+          setStatus('Analysis complete.', 'success');
+        } else {
+          setStatus(data.error || 'Something went wrong.', 'error');
+        }
+
+      } catch (err) {
+        setStatus('Could not connect to analysis service. Please try again.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Analyze Safety';
+      }
+    }
+
+    function setStatus(msg, type) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = 'status ' + type;
+    }
+  </script>
+
+</body>
+</html>
