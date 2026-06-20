@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerCare Voice - 24/7 AI Voice Receptionist for Women's Health Clinics</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="HerCare Voice is a 24/7 AI voice receptionist designed specifically for women's health clinics. Maya answers inbound calls, collects patient details, books appointments, and logs interactions automatically.">
+    <meta name="keywords" content="AI receptionist, women's health clinic, medical voice agent, clinical AI assistant, automatic appointment booking, Cal.com integration, Retell AI, HIPAA receptionist">
+    <meta name="author" content="Rani Neog Adhikary - BuildSmart AI">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hercare.buildsmartai.app">
+    <meta property="og:title" content="HerCare Voice - 24/7 AI Voice Receptionist for Women's Health Clinics">
+    <meta property="og:description" content="Never miss another patient booking. Maya answers inbound calls, checks availability, books directly into Google Calendar, and logs everything to Sheets 24/7.">
+    <meta property="og:image" content="https://hercare.buildsmartai.app/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hercare.buildsmartai.app">
+    <meta property="twitter:title" content="HerCare Voice - 24/7 AI Voice Receptionist for Women's Health Clinics">
+    <meta property="twitter:description" content="Never miss another patient booking. Maya answers inbound calls, checks availability, books directly into Google Calendar, and logs everything to Sheets 24/7.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#" class="logo-area" id="header-logo-link">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="18" fill="url(#logo-grad)" stroke="#1D9E75" stroke-width="2"/>
+                    <path d="M20 9C15.5817 9 12 12.5817 12 17C12 21.4183 20 31 20 31C20 31 28 21.4183 28 17C28 12.5817 24.4183 9 20 9ZM20 20.5C18.067 20.5 16.5 18.933 16.5 17C16.5 15.067 18.067 13.5 20 13.5C21.933 13.5 23.5 15.067 23.5 17C23.5 18.933 21.933 20.5 20 20.5Z" fill="white"/>
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#0F6E56"/>
+                            <stop offset="1" stop-color="#1D9E75"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title">HerCare <span class="accent-text">Voice</span></span>
+                    <span class="logo-subtitle">Women's Health AI Receptionist</span>
+                </div>
+            </a>
+
+            <nav class="main-navigation" id="main-nav">
+                <ul>
+                    <li><a href="#problem">The Problem</a></li>
+                    <li><a href="#meet-maya">Meet Maya</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#outcomes">Outcomes</a></li>
+                    <li><a href="#demo" class="nav-cta-btn">Test Live</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+            </div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="trust-badge">
+                        <span class="badge-dot"></span>
+                        <span class="badge-text">Clinic-Ready Voice AI Assistant</span>
+                    </div>
+                    <h1 class="hero-title">No Patient Call<br><span class="gradient-text">Goes Unanswered</span></h1>
+                    <p class="hero-subtitle">HerCare Voice is a 24/7 AI receptionist that answers inbound calls, books appointments, and logs every interaction — automatically.</p>
+                    
+                    <div class="hero-cta-wrapper">
+                        <a href="tel:+16598371320" class="btn btn-primary hero-cta-btn" id="hero-main-cta">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="phone-icon-pulse"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            Call Maya Now — +1 (659) 837-1320
+                        </a>
+                        <p class="cta-note">Live demo — call anytime, 24/7</p>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <!-- Interactive Visual Dashboard Mockup -->
+                    <div class="dashboard-widget shadow-lg">
+                        <div class="widget-header">
+                            <div class="widget-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="widget-title">Maya Active Call Session</div>
+                            <div class="widget-status live">
+                                <span class="pulse-dot"></span> Online
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            <!-- Visual Waveform -->
+                            <div class="waveform-container">
+                                <div class="waveform" id="waveform">
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Simulator Transcript Dialogue -->
+                            <div class="simulation-chat" id="simulation-chat">
+                                <div class="chat-message system">Click "Simulate Call" to see a live demonstration of Maya in action.</div>
+                            </div>
+                            
+                            <div class="widget-controls">
+                                <button class="btn btn-secondary btn-sm" id="btn-simulate-call">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    Simulate Call
+                                </button>
+                                <div class="call-duration" id="call-duration">00:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE PROBLEM SECTION -->
+        <section class="problem-section" id="problem">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">Clinic Bottlenecks</span>
+                    <h2 class="section-title">The Problem</h2>
+                    <p class="section-desc">Traditional phone setups fail modern clinical standards, causing patient leakage and overwhelming front-desk staff.</p>
+                </div>
+
+                <div class="grid grid-3 problem-grid">
+                    <!-- Card 1 -->
+                    <div class="problem-card card hover-lift">
+                        <div class="card-icon-container">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <h3>Unanswered After-Hours Calls</h3>
+                        <p>Women's health clinics lose crucial patient bookings during evenings, weekends, and lunch breaks when the phone lines are unstaffed. Patients expect instant care response.</p>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="problem-card card hover-lift">
+                        <div class="card-icon-container">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h3>Patients Move to Competitors</h3>
+                        <p>When a call goes to voicemail, over 67% of patients won't leave a message. Instead, they hang up and call the next women's health clinic in their search results.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="problem-card card hover-lift">
+                        <div class="card-icon-container">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        </div>
+                        <h3>Staff Return to Chaos</h3>
+                        <p>Mornings start with staff listening to fragmented voicemails, typing data manually, and playing phone tag to book appointments. No structured logs, no tracking, and high operational stress.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEET MAYA (SOLUTION) SECTION -->
+        <section class="solution-section" id="meet-maya">
+            <div class="solution-bg-blobs">
+                <div class="blob blob-1"></div>
+            </div>
+            <div class="container solution-container">
+                <div class="solution-image-side">
+                    <!-- Animated Clinical Assistant Visual -->
+                    <div class="maya-avatar-container">
+                        <div class="maya-aura"></div>
+                        <div class="maya-circle">
+                            <svg class="maya-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="100" r="90" fill="url(#maya-avatar-grad)" stroke="#1D9E75" stroke-width="3"/>
+                                <!-- Abstract warm avatar representational paths -->
+                                <path d="M100 45C78.46 45 61 62.46 61 84C61 101.4 72.41 116.14 88 121.2V136H70V148H130V136H112V121.2C127.59 116.14 139 101.4 139 84C139 62.46 121.54 45 100 45Z" fill="white" opacity="0.95"/>
+                                <path d="M100 62C87.85 62 78 71.85 78 84C78 96.15 87.85 106 100 106C112.15 106 122 96.15 122 84C122 71.85 112.15 62 100 62Z" fill="#0F6E56"/>
+                                <path d="M100 136H90V142H100V136Z" fill="#1D9E75"/>
+                                <defs>
+                                    <linearGradient id="maya-avatar-grad" x1="10" y1="10" x2="190" y2="190" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#0F6E56"/>
+                                        <stop offset="1" stop-color="#1D9E75"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <span class="maya-badge">AI Assistant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-content">
+                    <span class="section-tag">Empathetic AI</span>
+                    <h2 class="section-title">Meet Maya</h2>
+                    <p class="section-desc">Maya is HerCare Voice's conversational AI receptionist — designed with a warm, clinical, and reassuring tone. She ensures your patients feel heard and cared for instantly.</p>
+                    
+                    <p class="solution-text">Maya handles clinic-specific workflows out of the box. She answers every single call on the first ring, collects essential patient information, checks your clinic's calendar availability, books appointments, and logs all call summaries and post-call structured data automatically.</p>
+
+                    <!-- Call Flow Visualization -->
+                    <div class="flow-container">
+                        <h4>Automated Patient Booking Journey</h4>
+                        <div class="flow-steps">
+                            <div class="flow-step">
+                                <div class="flow-icon">📞</div>
+                                <span>Patient Calls</span>
+                            </div>
+                            <div class="flow-arrow">➔</div>
+                            <div class="flow-step">
+                                <div class="flow-icon">🤖</div>
+                                <span>Maya Answers</span>
+                            </div>
+                            <div class="flow-arrow">➔</div>
+                            <div class="flow-step">
+                                <div class="flow-icon">📅</div>
+                                <span>Books Appt</span>
+                            </div>
+                            <div class="flow-arrow">➔</div>
+                            <div class="flow-step">
+                                <div class="flow-icon">📝</div>
+                                <span>Logs to Sheet</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS SECTION -->
+        <section class="how-it-works-section" id="how-it-works">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">Implementation Flow</span>
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-desc">Four simple, automated steps that connect patients with your care providers seamlessly.</p>
+                </div>
+
+                <div class="steps-grid">
+                    <!-- Step 1 -->
+                    <div class="step-card card">
+                        <div class="step-number">01</div>
+                        <h3>Patient Calls Clinic Number</h3>
+                        <p>Your existing clinic phone number automatically forwards unanswered or after-hour calls to Maya, or patients dial your dedicated HerCare line directly. There are no wait times or queues.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card card">
+                        <div class="step-number">02</div>
+                        <h3>Maya Answers Instantly</h3>
+                        <p>With clinical empathy, Maya greets the caller, gathers patient information (including full name, date of birth, and email), and details the specific women's health service they are seeking.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card card">
+                        <div class="step-number">03</div>
+                        <h3>Checks Availability & Books</h3>
+                        <p>Integrating directly with <strong>Cal.com</strong> and <strong>Google Calendar</strong>, Maya reads real-time provider openings, presents available slots, and books the appointment instantly.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card card">
+                        <div class="step-number">04</div>
+                        <h3>Logs Post-Call Structured Data</h3>
+                        <p>A comprehensive call summary, booking status, and patient demographics are automatically recorded to <strong>Google Sheets</strong> and synchronized with your EMR system.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECH STACK SECTION -->
+        <section class="tech-stack-section" id="tech-stack">
+            <div class="container text-center">
+                <span class="section-tag">Robust Infrastructure</span>
+                <h2 class="section-title">Built With</h2>
+                
+                <div class="stack-badges-container">
+                    <div class="stack-badge hover-lift">
+                        <span class="badge-icon">⚡</span>
+                        <span class="badge-label">Retell AI</span>
+                    </div>
+                    <div class="stack-badge hover-lift">
+                        <span class="badge-icon">🧠</span>
+                        <span class="badge-label">GPT-4.1 Mini</span>
+                    </div>
+                    <div class="stack-badge hover-lift">
+                        <span class="badge-icon">📅</span>
+                        <span class="badge-label">Cal.com</span>
+                    </div>
+                    <div class="stack-badge hover-lift">
+                        <span class="badge-icon">🗓️</span>
+                        <span class="badge-label">Google Calendar</span>
+                    </div>
+                    <div class="stack-badge hover-lift">
+                        <span class="badge-icon">🔗</span>
+                        <span class="badge-label">n8n</span>
+                    </div>
+                    <div class="stack-badge hover-lift">
+                        <span class="badge-icon">📊</span>
+                        <span class="badge-label">Google Sheets</span>
+                    </div>
+                    <div class="stack-badge hover-lift">
+                        <span class="badge-icon">💬</span>
+                        <span class="badge-label">Twilio</span>
+                    </div>
+                </div>
+                
+                <p class="stack-note">Enterprise-grade voice AI stack</p>
+            </div>
+        </section>
+
+        <!-- KEY OUTCOMES (METRICS) SECTION -->
+        <section class="outcomes-section" id="outcomes">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">Performance Metrics</span>
+                    <h2 class="section-title">Key Outcomes</h2>
+                    <p class="section-desc">Measurable improvements that elevate patient satisfaction and clinic revenue.</p>
+                </div>
+
+                <div class="grid grid-4 outcomes-grid">
+                    <!-- Metric 1 -->
+                    <div class="metric-card card text-center">
+                        <div class="metric-number-wrapper">
+                            <span class="metric-val" data-target="100">0</span><span class="metric-unit">%</span>
+                        </div>
+                        <h4>Patient calls answered</h4>
+                        <p>Eliminate missed calls, voicemails, and long hold queues completely.</p>
+                    </div>
+
+                    <!-- Metric 2 -->
+                    <div class="metric-card card text-center">
+                        <div class="metric-number-wrapper">
+                            <span class="metric-val-raw">24/7</span>
+                        </div>
+                        <h4>Availability, no staff needed</h4>
+                        <p>Continuous clinical coverage, including weekends and holidays, with zero extra staff overhead.</p>
+                    </div>
+
+                    <!-- Metric 3 -->
+                    <div class="metric-card card text-center">
+                        <div class="metric-number-wrapper">
+                            <span class="metric-val" data-target="0">0</span><span class="metric-unit"> min</span>
+                        </div>
+                        <h4>Wait time for booking</h4>
+                        <p>Immediate live booking. Zero minutes spent waiting on hold for a receptionist.</p>
+                    </div>
+
+                    <!-- Metric 4 -->
+                    <div class="metric-card card text-center">
+                        <div class="metric-number-wrapper">
+                            <span class="metric-val" data-target="100">0</span><span class="metric-unit">%</span>
+                        </div>
+                        <h4>Post-call data captured</h4>
+                        <p>Every call structured, transcripted, and accurately logged to your EMR database.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE DEMO SECTION -->
+        <section class="demo-section" id="demo">
+            <div class="container">
+                <div class="demo-container-box shadow-xl">
+                    <div class="demo-content text-center">
+                        <span class="demo-badge">Test It Live</span>
+                        <h2 class="demo-title">Try It Live</h2>
+                        <p class="demo-desc">Experience Maya's warm, conversational skills firsthand. Call right now to see how she interacts, captures details, and handles booking.</p>
+                        
+                        <div class="phone-number-box">
+                            <a href="tel:+16598371320" class="phone-number-link">+1 (659) 837-1320</a>
+                            <button class="copy-btn" id="btn-copy-number" aria-label="Copy phone number to clipboard">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                Copy Number
+                            </button>
+                        </div>
+
+                        <p class="demo-instruction">Maya will answer, ask for your details, and book a demo appointment for you in seconds.</p>
+
+                        <div class="demo-actions">
+                            <a href="tel:+16598371320" class="btn btn-accent btn-large glow-effect">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 22 16.92z"></path></svg>
+                                Call Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-brand-side">
+                <div class="footer-logo">
+                    <span class="logo-title">HerCare <span class="accent-text">Voice</span></span>
+                </div>
+                <p class="footer-slogan">Empowering women's health clinics with intelligent, compassionate voice automation.</p>
+                <span class="footer-domain">hercare.buildsmartai.app</span>
+            </div>
+
+            <div class="footer-credits-side">
+                <h4>Built by BuildSmart AI</h4>
+                <p>Designed & Developed by <strong>Rani Neog Adhikary</strong></p>
+                
+                <div class="footer-links">
+                    <a href="https://buildsmartai.app" target="_blank" rel="noopener" class="footer-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        buildsmartai.app
+                    </a>
+                    <a href="https://linkedin.com/in/rani-neog-adhikary-52101b383/" target="_blank" rel="noopener" class="footer-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        LinkedIn Profile
+                    </a>
+                    <a href="https://github.com/raniaxomiya2016/BuildSmartAI" target="_blank" rel="noopener" class="footer-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        GitHub Repo
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 HerCare Voice & BuildSmart AI. All rights reserved. HIPAA Compliant Security.</p>
+        </div>
+    </footer>
+
+    <!-- Desktop Calling Modal -->
+    <div class="modal-overlay" id="call-modal">
+        <div class="modal-content shadow-xl">
+            <button class="modal-close" id="btn-close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-header-section">
+                <h3>Connect with Maya</h3>
+                <p>Since you are on a desktop, choose one of these options to call Maya:</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-option">
+                    <div class="option-icon">📱</div>
+                    <div class="option-details">
+                        <h4>Scan QR Code</h4>
+                        <p>Scan with your phone's camera to dial instantly:</p>
+                        <div class="qr-code-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=tel:%2B16598371320" alt="QR Code to dial +1 (659) 837-1320" class="qr-code-img">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-separator"></div>
+                
+                <div class="modal-option">
+                    <div class="option-icon">📋</div>
+                    <div class="option-details">
+                        <h4>Copy Phone Number</h4>
+                        <p>Dial from your phone or softphone app:</p>
+                        <div class="modal-phone-num">+1 (659) 837-1320</div>
+                        <button class="btn btn-primary btn-sm" id="btn-modal-copy">Copy Number</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
