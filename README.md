@@ -1,76 +1,34 @@
 # BuildSmart AI — Portfolio
 
-AI Automation Engineering portfolio by Rani Neog Adhikary.
-
-AWS Certified AI Practitioner | AI Automation Engineer
-Website: https://buildsmartai.app
+> Real AI products built and shipped by **Rani Neog Adhikary**  
+> 🌐 [buildsmartai.app](https://buildsmartai.app) · [LinkedIn](https://linkedin.com/in/rani-neog-adhikary-52101b383/) · [GitHub](https://github.com/raniaxomiya2016/BuildSmartAI)
 
 ---
 
 ## Projects
 
-### RedlineAI — AI Contract Risk Analysis
-AI-powered tool that reads any legal contract, flags 
-risky clauses, and delivers a plain-English risk report 
-in under 30 seconds.
-Stack: n8n · GPT-4.1 Mini · Claude MCP · Airtable · Netlify
-Live: https://redlineai.buildsmartai.app
-[View Project](./RedlineAI/README.md)
+### Project 1 — RedlineAI
+**AI Document Review Agent for Real Estate Contracts**
+
+Automatically reviews real estate contracts, flags risky clauses, and delivers structured summaries — reducing review time from hours to minutes.
+
+📁 [`/RedlineAI`](./RedlineAI) · 🌐 [redlineai.buildsmartai.app](https://redlineai.buildsmartai.app)
 
 ---
 
-### ARIA
-[Brief one line description]
-Stack: [tools used]
-[View Project](./ARIA/README.md)
+### Project 2 — VisionCheck AI
+**AI Visual QC Inspector for E-Commerce Product Images**
+
+Automatically scans product images for quality issues, flags defects, and generates structured QC reports — eliminating manual visual inspection at scale.
+
+📁 [`/VisionCheckAI`](./VisionCheckAI) · 🌐 [visioncheck.buildsmartai.app](https://visioncheck.buildsmartai.app)
 
 ---
 
-### NovaGlow
-[Brief one line description]
-Stack: [tools used]
-[View Project](./NovaGlow/README.md)
+### Project 3 — HerCare Voice
+**24/7 AI Voice Receptionist for Women's Health Clinics**
 
----
+Answers every inbound patient call, collects booking details, checks real-time availability, schedules appointments into Google Calendar, and logs post-call data to Google Sheets — automatically.
 
-### AWS Compliance + Bedrock
-[Brief one line description]
-Stack: [tools used]
-[View Project](./AWS-Compliance-Bedrock/README.md)
-
----
-
-## About
-
-I am an AI Automation Engineer with 12+ years in 
-broadcast media, AWS DevOps experience, and a focus 
-on building intelligent no-code and low-code AI 
-workflows that solve real business problems.
-
-AWS Certified AI Practitioner
-AWS Certified Solutions Architect
-
-Contact: https://buildsmartai.app
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+📁 [`/HerCareVoice`](./HerCareVoice) · 🌐 [hercare.buildsmartai.app](https://hercare.buildsmartai.app) · 📞 +1 (659) 837-1320
 
