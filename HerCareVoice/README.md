@@ -121,3 +121,11 @@ The following fields are captured after every call and logged to Google Sheets:
 - **Portfolio:** [buildsmartai.app](https://buildsmartai.app)
 - **Built by:** [Rani Neog Adhikary](https://linkedin.com/in/rani-neog-adhikary-52101b383/)
 
+- ### Project 3 — HerCare Voice
+**24/7 AI Voice Receptionist for Women's Health Clinics**
+
+Answers every inbound patient call, collects booking details, checks real-time availability, 
+schedules appointments into Google Calendar, and logs post-call data to Google Sheets — automatically.
+
+📁 [`/HerCareVoice`](./HerCareVoice) · 🌐 [hercare.buildsmartai.app](https://hercare.buildsmartai.app) · 📞 +1 (659) 837-1320
+
