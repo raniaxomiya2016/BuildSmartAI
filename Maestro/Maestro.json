@@ -1,0 +1,893 @@
+{
+  "name": "Maestro",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi! I'm Maestro, your AI productivity assistant. I can handle your email, calendar, and meeting notes. What would you like me to do?",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -240,
+        -48
+      ],
+      "id": "737d39e5-3545-4fd2-a0c9-591384327e35",
+      "name": "When chat message received",
+      "webhookId": "a20362e6-4d92-4994-9e64-187ac0d93bea"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a Master Agent Orchestrator who handles all things Email, Cal and\nMeetings -\n1. If the user asks for Email related query, Use the Email Agent Tool\n2. If the user asks for Calendar related query, Use the Calendar Agent Tool\n3. If the user asks for Meeting related query, Use the Meeting Agent Tool"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -48,
+        -48
+      ],
+      "id": "19d706df-9dba-4fdf-bc7a-6413bfb4c55e",
+      "name": "Master Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -208,
+        128
+      ],
+      "id": "1138973b-3b33-4e90-b1ea-797efee86df0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "NbwrjDHv6PVQILV5",
+          "name": "OpenAI account 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        16,
+        128
+      ],
+      "id": "a10656d1-a832-4f4b-9b17-6515d399342a",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "toolDescription": "AI Agent that can handle all things email",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "You are an expert email assistant who handles all things Email -1. If the\nuser asks for send/compose/write an email, use the Send message tool2. If the\nuser asks for Summarize/read/fetch emails, use the Get Many messages tool3.\nIf the user asks to draft something, use the Draft a message tool4. If user\neither asks for Reply or Delete a message - a. First read the emails in\nfocus via Get Many messages tool b. Extract the Message ID relevant for the\nuser's query and use the appropriate tool to perform the action."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        640,
+        416
+      ],
+      "id": "32606bf5-e712-4c83-828b-fff1d13c370e",
+      "name": "Email Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        576
+      ],
+      "id": "566e6c0e-2499-4b43-a250-820bc9f7c86b",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "NbwrjDHv6PVQILV5",
+          "name": "OpenAI account 5"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        512
+      ],
+      "id": "6bfdd325-1cb8-41e8-b1ae-0bd3694b0693",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "limit": 5,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        304,
+        800
+      ],
+      "id": "e335eacc-190a-4887-ad3b-2a65486d822b",
+      "name": "Get many messages in Gmail",
+      "webhookId": "fba91ed4-1a43-4c32-86c4-94e85081759e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Kf0NbA0wPJfHwGwE",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        736
+      ],
+      "id": "f15fee10-df4f-4df3-ac1e-3bd2c6aad067",
+      "name": "Send a message in Gmail",
+      "webhookId": "fba91ed4-1a43-4c32-86c4-94e85081759e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Kf0NbA0wPJfHwGwE",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        656,
+        688
+      ],
+      "id": "1c9a5543-2ae4-43eb-8cba-e1fc286079a9",
+      "name": "Reply to a message in Gmail",
+      "webhookId": "fba91ed4-1a43-4c32-86c4-94e85081759e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Kf0NbA0wPJfHwGwE",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        800,
+        752
+      ],
+      "id": "30db48e3-36c9-4749-9224-021d43240a0b",
+      "name": "Create a draft in Gmail",
+      "webhookId": "fba91ed4-1a43-4c32-86c4-94e85081759e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Kf0NbA0wPJfHwGwE",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        944,
+        816
+      ],
+      "id": "5a053d4b-7145-4aef-94b9-d2f9b686f135",
+      "name": "Delete a message in Gmail",
+      "webhookId": "fba91ed4-1a43-4c32-86c4-94e85081759e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Kf0NbA0wPJfHwGwE",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        352,
+        176
+      ],
+      "id": "5cce49b2-40ee-4ce9-93b9-c3522af5b963",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "NbwrjDHv6PVQILV5",
+          "name": "OpenAI account 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        544,
+        176
+      ],
+      "id": "5dc0e10d-5165-4113-961f-e4e7e4d50e11",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "raniaxomiya@gmail.com",
+          "mode": "list",
+          "cachedResultName": "raniaxomiya@gmail.com"
+        },
+        "limit": 5,
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        752,
+        144
+      ],
+      "id": "784e09ef-60b2-4be8-a640-777410cdaf0a",
+      "name": "Get many events in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QSn2TofQdKQOWHJN",
+          "name": "Google Calendar OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "value": "raniaxomiya@gmail.com",
+          "mode": "list",
+          "cachedResultName": "raniaxomiya@gmail.com"
+        },
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        976,
+        144
+      ],
+      "id": "b65224f5-abd8-46ca-81d9-5e68a9d067a7",
+      "name": "Get availability  in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QSn2TofQdKQOWHJN",
+          "name": "Google Calendar OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "includeTime": false,
+        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        64
+      ],
+      "id": "1079d162-1c3c-4b05-a7a7-ce6bd1ffddc1",
+      "name": "Date & Time"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "raniaxomiya@gmail.com",
+          "mode": "list",
+          "cachedResultName": "raniaxomiya@gmail.com"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "additionalFields": {
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1184,
+        144
+      ],
+      "id": "b81cd344-990d-4bfc-a5fc-0faf93f794a8",
+      "name": "Create an event  in Google Calendar1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QSn2TofQdKQOWHJN",
+          "name": "Google Calendar OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "raniaxomiya@gmail.com",
+          "mode": "list",
+          "cachedResultName": "raniaxomiya@gmail.com"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1392,
+        144
+      ],
+      "id": "680c6bf1-df30-4ef6-b29f-c24e8469b689",
+      "name": "Delete an event in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QSn2TofQdKQOWHJN",
+          "name": "Google Calendar OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "raniaxomiya@gmail.com",
+          "mode": "list",
+          "cachedResultName": "raniaxomiya@gmail.com"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "useDefaultReminders": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Use_Default_Reminders', ``, 'boolean') }}",
+        "updateFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1600,
+        160
+      ],
+      "id": "5fa8d945-015a-4e23-b5b2-67dcf603cbbd",
+      "name": "Update an event in Google Calendar\"",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "QSn2TofQdKQOWHJN",
+          "name": "Google Calendar OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "\"AI Agent that can handle all things meetings\"",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "You are an expert meeting assistant who handles all things meetings -\n1. For every user query, first get all the list of trascripts using list of\ntranscripts tool.\n2. Extract the relavant transcript ID from the list above, and construct the body\nfor the next API call using the Transcript tool as follows -\n{\n\"query\": \"query Transcript($transcriptId: String!) { transcript(id:\n$transcriptId) { id title sentences { speaker_name text start_time end_time }\nmeeting_attendees { displayName email name } participants } }\",\n\"variables\": {\n\"transcriptId\": \"<insert_transcript_id_from_step_1>\"\n}\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        -208,
+        320
+      ],
+      "id": "aaf05faf-c6de-4a22-b298-913b4a676b84",
+      "name": "Meetings Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -512,
+        544
+      ],
+      "id": "408438c9-a490-4f8c-bd96-ac2ead9e4a62",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "NbwrjDHv6PVQILV5",
+          "name": "OpenAI account 5"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -320,
+        544
+      ],
+      "id": "3bfd6f34-dd2a-4acc-b891-ec83bbb747d0",
+      "name": "Simple Memory3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.fireflies.ai/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 27aa163b-79d5-4019-bcbd-0fcc005ca8b7"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "query Transcripts { transcripts { title id } }"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.4,
+      "position": [
+        -128,
+        528
+      ],
+      "id": "28806f00-63ff-4cc2-b773-a44f7ba844a8",
+      "name": "List of Transcripts"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.fireflies.ai/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 27aa163b-79d5-4019-bcbd-0fcc005ca8b7"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "{ \"query\": \"query Transcript($transcriptId: String!) { transcript(id: $transcriptId) { id\ntitle sentences { speaker_name text start_time end_time } meeting_attendees {\ndisplayName email name phoneNumber } meeting_attendance { name join_time leave_time\n} } }\", \"variables\": { \"transcriptId\": \"your_transcript_id\" } }"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.4,
+      "position": [
+        80,
+        528
+      ],
+      "id": "974d69b7-ca8c-4f62-838a-7683b4433d94",
+      "name": "Transcripts"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 304,
+        "width": 512,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -288,
+        -64
+      ],
+      "typeVersion": 1,
+      "id": "0dded4fe-a654-4270-8a5a-810487c87973",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "height": 368,
+        "width": 768,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -560,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "bd4db1dd-d194-4ae4-b339-a3a5aedd78fb",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 608,
+        "width": 816,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        256,
+        400
+      ],
+      "typeVersion": 1,
+      "id": "6d141d95-2b56-49de-9bcc-ccca8ed2114d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 384,
+        "width": 1424
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        304,
+        -64
+      ],
+      "typeVersion": 1,
+      "id": "ed92f20c-dc7a-418e-821c-fc47a0feddcf",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Email Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Email Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Email Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Email Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply to a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Email Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a draft in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Email Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Email Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        []
+      ]
+    },
+    "Get many events in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get availability  in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event  in Google Calendar1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an event in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update an event in Google Calendar\"": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meetings Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Master Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Meetings Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "Meetings Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List of Transcripts": {
+      "ai_tool": [
+        [
+          {
+            "node": "Meetings Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcripts": {
+      "ai_tool": [
+        [
+          {
+            "node": "Meetings Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "34e13419-1c96-4158-b679-900c3d230f71",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a43ad6414d59ead781990561aee56148ff5142576f13b2344cc7547548d0de7d"
+  },
+  "nodeGroups": [],
+  "id": "y8lsFeXhn1G3XqcN",
+  "tags": []
+}
