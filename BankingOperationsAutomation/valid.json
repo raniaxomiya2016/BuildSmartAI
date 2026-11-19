@@ -1,0 +1,20 @@
+[
+    {
+        "transaction_id": "T1001",
+        "account_id": "A2001",
+        "amount": 500.0,
+        "status": "Completed"
+    },
+    {
+        "transaction_id": "T1002",
+        "account_id": "A2002",
+        "amount": 250.0,
+        "status": "Pending"
+    },
+    {
+        "transaction_id": "T1005",
+        "account_id": "A2005",
+        "amount": 750.0,
+        "status": "Completed"
+    }
+]

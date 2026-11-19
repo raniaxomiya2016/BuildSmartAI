@@ -1,0 +1,7 @@
+LOAN APPLICATION
+Applicant Name: Sarah Mitchell
+Loan Amount: $25,000
+Annual Income: $72,000
+Employment Status: Full-Time
+Credit Score: Not Provided
+Loan Purpose: Home Improvement

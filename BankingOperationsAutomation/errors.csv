@@ -1,0 +1,3 @@
+transaction_id,account_id,amount,status,error
+T1003,,100.00,Completed,Missing ID
+T1004,A2004,INVALID,Completed,could not convert string to float: 'INVALID'

@@ -1,0 +1,11 @@
+
+# Banking automation - sensitive and local files
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+__pycache__/
+*.pyc
+.DS_Store

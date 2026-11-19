@@ -1,0 +1,14 @@
+{
+    "extracted_data": {
+        "applicant_name": "Sarah Mitchell",
+        "loan_amount": 25000,
+        "annual_income": 72000,
+        "employment_status": "Full-Time",
+        "credit_score": null,
+        "loan_purpose": "Home Improvement"
+    },
+    "human_review_required": true,
+    "review_fields": [
+        "credit_score"
+    ]
+}

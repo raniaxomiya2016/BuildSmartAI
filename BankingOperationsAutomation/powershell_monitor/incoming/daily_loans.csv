@@ -1,0 +1,3 @@
+loan_id,member_id,loan_amount,status
+L1001,M2001,15000,Active
+L1002,M2002,25000,Pending

@@ -1,0 +1,6 @@
+transaction_id,account_id,amount,status
+T1001,A2001,500.00,Completed
+T1002,A2002,250.00,Pending
+T1003,,100.00,Completed
+T1004,A2004,INVALID,Completed
+T1005,A2005,750.00,Completed
